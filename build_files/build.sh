@@ -60,3 +60,8 @@ systemctl enable netbird
 ## misc software
 
 dnf5 install --assumeyes direnv the_silver_searcher unar xbanish
+
+## Remove tailscale
+
+systemctl disable tailscaled
+dnf5 remove --assumeyes tailscale
