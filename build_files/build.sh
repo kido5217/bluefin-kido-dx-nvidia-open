@@ -10,7 +10,7 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/43/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this installs a package from fedora repos
-dnf5 install -y tmux 
+# dnf5 install -y tmux 
 
 # Use a COPR Example:
 #
@@ -56,3 +56,7 @@ Environment=SYSTEMD_UNIT=netbird
 WantedBy=multi-user.target
 EOF
 systemctl enable netbird
+
+## misc software
+
+dnf5 install --assumeyes direnv the_silver_searcher unar xbanish
