@@ -72,6 +72,8 @@ rm -rf /var/home/linuxbrew
 
 ## Add nix packet manager
 
+mkdir /var/nix
+ln -s /var/nix /nix
 dnf5 install --assumeyes nix
 systemctl enable nix-daemon
 
