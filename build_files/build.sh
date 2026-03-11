@@ -65,3 +65,7 @@ dnf5 install --assumeyes direnv the_silver_searcher unar xbanish
 
 systemctl disable tailscaled
 dnf5 remove --assumeyes tailscale
+
+## Remove homebrew
+
+rm -rf /var/home/linuxbrew
