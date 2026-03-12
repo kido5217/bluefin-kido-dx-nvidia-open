@@ -85,7 +85,7 @@ Options=bind
 [Install]
 WantedBy=multi-user.target
 EOF
-systemctl enable nix.mount
+systemctl enable --now nix.mount
 dnf5 install --assumeyes nix
 systemctl enable nix-daemon
 
