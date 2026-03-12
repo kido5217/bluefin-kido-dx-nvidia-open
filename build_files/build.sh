@@ -89,6 +89,11 @@ systemctl enable --now nix.mount
 dnf5 install --assumeyes nix
 systemctl enable nix-daemon
 
+## Disable mcelog
+
+systemctl disable mcelog
+dnf5 remove --assumeyes mcelog
+
 ## Cleanup
 
 dnf5 clean all
