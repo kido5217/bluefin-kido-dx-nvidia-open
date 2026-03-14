@@ -94,6 +94,10 @@ systemctl enable nix-daemon
 systemctl disable mcelog
 dnf5 remove --assumeyes mcelog
 
+## Purge docker
+
+dnf5 remove --assumeyes docker-ce docker-ce-cli docker-ce-rootless-extras docker-model-plugin docker-compose-plugin docker-buildx-plugin
+
 ## Enable docker compatibility for podman
 
 dnf5 install --assumeyes podman-docker podman-compose
