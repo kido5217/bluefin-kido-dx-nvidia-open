@@ -85,7 +85,7 @@ Options=bind
 [Install]
 WantedBy=multi-user.target
 EOF
-systemctl enable --now nix.mount
+systemctl enable nix.mount
 dnf5 install --assumeyes nix
 systemctl enable nix-daemon
 
@@ -104,10 +104,17 @@ dnf5 install --assumeyes podman-docker podman-compose
 echo 'DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock' >> /etc/environment
 touch /etc/containers/nodocker
 
+## Install yaak
+
+wget https://yaak.app/releases/v2026.3.1/rpm-x86_64/yaak-2026.3.1-1.x86_64.rpm
+rpm -i yaak-2026.3.1-1.x86_64.rpm
+rm -f yaak-2026.3.1-1.x86_64.rpm
+
 ## Update all packages
 
 dnf5 --assumeyes update
 
 ## Cleanup
 
+dnf5 autoremove
 dnf5 clean all
