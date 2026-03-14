@@ -103,6 +103,10 @@ dnf5 remove --assumeyes docker-ce docker-ce-cli docker-ce-rootless-extras docker
 dnf5 install --assumeyes podman-docker podman-compose
 echo 'DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock' >> /etc/environment
 
+## Update all packages
+
+dnf5 --assumeyes update
+
 ## Cleanup
 
 dnf5 clean all
