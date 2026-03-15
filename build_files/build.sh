@@ -39,6 +39,7 @@ EOF
 dnf5 download netbird --assumeyes --arch x86_64
 rpm -i --noscripts netbird_*_linux_amd64.rpm
 rm -f netbird_*_linux_amd64.rpm
+
 tee /etc/systemd/system/netbird.service <<EOF
 [Unit]
 Description=NetBird mesh network client
@@ -55,11 +56,12 @@ Environment=SYSTEMD_UNIT=netbird
 [Install]
 WantedBy=multi-user.target
 EOF
+
 systemctl enable netbird
 
 ## misc software
 
-dnf5 install --assumeyes direnv the_silver_searcher unar xbanish
+dnf5 install --assumeyes direnv pwgen the_silver_searcher unar xbanish
 
 ## Remove tailscale
 
@@ -73,6 +75,7 @@ rm -rf /var/home/linuxbrew
 ## Add nix packet manager
 
 mkdir -p /var/nix
+
 tee /etc/systemd/system/nix.mount <<EOF
 [Unit]
 Description=Bind mount for /nix
@@ -85,6 +88,7 @@ Options=bind
 [Install]
 WantedBy=multi-user.target
 EOF
+
 systemctl enable nix.mount
 dnf5 install --assumeyes nix
 systemctl enable nix-daemon
@@ -106,9 +110,10 @@ touch /etc/containers/nodocker
 
 ## Install yaak
 
-wget https://yaak.app/releases/v2026.3.1/rpm-x86_64/yaak-2026.3.1-1.x86_64.rpm
-rpm -i yaak-2026.3.1-1.x86_64.rpm
-rm -f yaak-2026.3.1-1.x86_64.rpm
+export YAAK_VERSION="2026.3.1"
+wget https://yaak.app/releases/v${YAAK_VERSION}/rpm-x86_64/yaak-${YAAK_VERSION}-1.x86_64.rpm
+rpm -i yaak-${YAAK_VERSION}-1.x86_64.rpm
+rm -f yaak-${YAAK_VERSION}-1.x86_64.rpm
 
 ## Update all packages
 
