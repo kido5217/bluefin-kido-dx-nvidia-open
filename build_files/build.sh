@@ -115,6 +115,21 @@ wget https://yaak.app/releases/v${YAAK_VERSION}/rpm-x86_64/yaak-${YAAK_VERSION}-
 rpm -i yaak-${YAAK_VERSION}-1.x86_64.rpm
 rm -f yaak-${YAAK_VERSION}-1.x86_64.rpm
 
+## Install patched jetbrains mono
+
+dnf5 remove --assumeyes jetbrains-mono-fonts-all
+
+export NJB_VERSION="3.4.0"
+export NJB_PATH="/usr/share/fonts/jetbrains-mono-nl-nerd-fonts"
+
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v${NJB_VERSION}/JetBrainsMono.zip
+unzip -d JetBrainsMono JetBrainsMono.zip
+mkdir ${NJB_PATH}
+cp JetBrainsMono/JetBrainsMonoNL*.ttf ${NJB_PATH}/
+fc-cache -f -v
+rm -rf JetBrainsMono
+rm -rf JetBrainsMono.zip
+
 ## Update all packages
 
 dnf5 --assumeyes update
