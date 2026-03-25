@@ -133,7 +133,7 @@ rm -rf JetBrainsMono.zip
 
 ## Update all packages
 
-dnf5 --assumeyes update
+# dnf5 --assumeyes update
 
 ## Cleanup
 
