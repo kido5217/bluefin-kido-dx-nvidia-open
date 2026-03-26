@@ -135,6 +135,17 @@ rm -rf JetBrainsMono.zip
 
 # dnf5 --assumeyes update
 
+## Remove some gnome extensions
+
+export GNOME_EXT_PATH="/usr/share/gnome-shell/extensions"
+rm -rf ${GNOME_EXT_PATH}/'apps-menu@gnome-shell-extensions.gcampax.github.com'
+rm -rf ${GNOME_EXT_PATH}/'caffeine@patapon.info'
+rm -rf ${GNOME_EXT_PATH}/'dash-to-dock@micxgx.gmail.com'
+rm -rf ${GNOME_EXT_PATH}/'launch-new-instance@gnome-shell-extensions.gcampax.github.com'
+rm -rf ${GNOME_EXT_PATH}/'search-light@icedman.github.com'
+rm -rf ${GNOME_EXT_PATH}/'window-list@gnome-shell-extensions.gcampax.github.com'
+
+
 ## Cleanup
 
 dnf5 autoremove
