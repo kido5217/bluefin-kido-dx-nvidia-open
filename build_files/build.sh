@@ -163,9 +163,9 @@ rm -rf pngout-${PNGOUT_VERSION}-linux
 
 ## Install quickshell
 
-dnf5 --assumeyes copr enable errornointernet/quickshell
-dnf5 install --assumeyes quickshell
-dnf5 --assumeyes copr disable errornointernet/quickshell
+# dnf5 --assumeyes copr enable errornointernet/quickshell
+# dnf5 install --assumeyes quickshell
+# dnf5 --assumeyes copr disable errornointernet/quickshell
 
 ## Update all packages
 
