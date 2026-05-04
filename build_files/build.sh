@@ -31,6 +31,15 @@ dnf5 --assumeyes install @c-development @development-tools gcc-c++ cmake make
 
 dnf5 install --assumeyes cuda-devel cuda-cudart-static
 
+## Build llama.cpp with CUDA support
+
+git clone https://github.com/ggml-org/llama.cpp
+cd llama.cpp
+export CCACHE_DISABLE=1
+cmake -B build -DGGML_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES="120" -DCMAKE_INSTALL_PREFIX=/usr
+cmake --build build --config Release -j$(nproc)
+cmake --install build
+
 ## netbird
 
 tee /etc/yum.repos.d/netbird.repo <<EOF
