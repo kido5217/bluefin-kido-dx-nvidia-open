@@ -25,8 +25,7 @@ set -ouex pipefail
 
 ## Dev tools
 
-dnf5 --assumeyes group install "development-tools"
-dnf5 install --assumeyes install cmake
+dnf5 --assumeyes install @c-development @development-tools gcc-c++ cmake make
 
 ## CUDA
 
