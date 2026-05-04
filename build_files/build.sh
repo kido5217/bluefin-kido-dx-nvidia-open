@@ -25,7 +25,7 @@ set -ouex pipefail
 
 ## Dev tools
 
-dnf5 install --assumeyes groupinstall "Development Tools"
+dnf5 --assumeyes group install "development-tools"
 dnf5 install --assumeyes install cmake
 
 ## CUDA
@@ -191,3 +191,5 @@ cp /ctx/wallpapers/* ${WP_PATH}/
 
 dnf5 autoremove
 dnf5 clean all
+
+rm -rf /run/dnf
