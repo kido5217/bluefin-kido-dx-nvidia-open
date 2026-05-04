@@ -1,3 +1,0 @@
-[submodule "build_files"]
-	path = build_files
-	url = git@github.com:kido5217/bluefin-custom.git
