@@ -29,7 +29,7 @@ dnf5 --assumeyes install @c-development @development-tools gcc-c++ cmake make
 
 ## CUDA
 
-dnf5 install --assumeyes cuda-devel
+dnf5 install --assumeyes cuda-devel cuda-cudart-static
 
 ## netbird
 
