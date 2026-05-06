@@ -84,8 +84,8 @@ dnf5 install --assumeyes libgda libgda-sqlite
 dnf5 install --assumeyes blender blender-cuda
 dnf5 install --assumeyes gnome-directory-thumbnailer gnome-kra-ora-thumbnailer
 dnf5 install --assumeyes nebula
-#dnf5 install --assumeyes llama-cpp
-#dnf5 install --assumeyes cuda
+# for trtllm
+dnf5 install --assumeyes openmpi openmpi-devel
 
 ## Remove tailscale
 
