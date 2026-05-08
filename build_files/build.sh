@@ -89,8 +89,8 @@ dnf5 install --assumeyes openmpi openmpi-devel
 
 ## Remove tailscale
 
-systemctl disable tailscaled
-dnf5 remove --assumeyes tailscale
+# systemctl disable tailscaled
+# dnf5 remove --assumeyes tailscale
 
 ## Add nix packet manager
 
