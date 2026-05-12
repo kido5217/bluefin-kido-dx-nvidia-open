@@ -25,20 +25,20 @@ set -ouex pipefail
 
 ## Dev tools
 
-dnf5 --assumeyes install @c-development @development-tools gcc-c++ cmake make
+# dnf5 --assumeyes install @c-development @development-tools gcc-c++ cmake make
 
 ## CUDA
 
-dnf5 install --assumeyes cuda-devel cuda-cudart-static
+# dnf5 install --assumeyes cuda-devel cuda-cudart-static
 
 ## Build llama.cpp with CUDA support
 
-git clone https://github.com/ggml-org/llama.cpp
-cd llama.cpp
-export CCACHE_DISABLE=1
-cmake -B build -DGGML_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES="120" -DCMAKE_INSTALL_PREFIX=/usr
-cmake --build build --config Release -j$(nproc)
-cmake --install build
+# git clone https://github.com/ggml-org/llama.cpp
+# cd llama.cpp
+# export CCACHE_DISABLE=1
+# cmake -B build -DGGML_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES="120" -DCMAKE_INSTALL_PREFIX=/usr
+# cmake --build build --config Release -j$(nproc)
+# cmake --install build
 
 ## netbird
 
@@ -84,8 +84,6 @@ dnf5 install --assumeyes libgda libgda-sqlite
 dnf5 install --assumeyes blender blender-cuda
 dnf5 install --assumeyes gnome-directory-thumbnailer gnome-kra-ora-thumbnailer
 dnf5 install --assumeyes nebula
-# for trtllm
-dnf5 install --assumeyes openmpi openmpi-devel
 
 ## Remove tailscale
 
