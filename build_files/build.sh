@@ -25,20 +25,31 @@ set -ouex pipefail
 
 ## Dev tools
 
-# dnf5 --assumeyes install @c-development @development-tools gcc-c++ cmake make
+dnf5 --assumeyes install gcc15 gcc15-c++ cmake
 
 ## CUDA
 
-# dnf5 install --assumeyes cuda-devel cuda-cudart-static
+dnf5 install --assumeyes cuda-devel cuda-cudart-static
 
 ## Build llama.cpp with CUDA support
 
-# git clone https://github.com/ggml-org/llama.cpp
-# cd llama.cpp
-# export CCACHE_DISABLE=1
-# cmake -B build -DGGML_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES="120" -DCMAKE_INSTALL_PREFIX=/usr
-# cmake --build build --config Release -j$(nproc)
-# cmake --install build
+ls -al /usr/sbin/
+git clone https://github.com/ggml-org/llama.cpp
+cd llama.cpp
+export CCACHE_DISABLE=1
+export CUDAHOSTCXX=/usr/sbin/g++-15
+export CC=/usr/sbin/gcc-15
+export CXX=/usr/sbin/g++-15
+cmake -B build \
+      -DGGML_CUDA=ON \
+      -DGGML_NATIVE=OFF \
+      -DCMAKE_INSTALL_PREFIX=/usr
+cmake --build build --config Release -j$(nproc)
+cmake --install build
+
+## devel cleanup
+
+dnf5 --assumeyes remove cuda-devel gcc15 gcc15-c++
 
 ## netbird
 
