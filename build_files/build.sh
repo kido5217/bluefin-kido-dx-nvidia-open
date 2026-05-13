@@ -33,7 +33,6 @@ dnf5 install --assumeyes cuda-devel cuda-cudart-static
 
 ## Build llama.cpp with CUDA support
 
-ls -al /usr/sbin/
 git clone https://github.com/ggml-org/llama.cpp
 cd llama.cpp
 export CCACHE_DISABLE=1
@@ -42,7 +41,7 @@ export CC=/usr/sbin/gcc-15
 export CXX=/usr/sbin/g++-15
 cmake -B build \
       -DGGML_CUDA=ON \
-      -DGGML_NATIVE=OFF \
+      -DCMAKE_CUDA_ARCHITECTURES="120" \
       -DCMAKE_INSTALL_PREFIX=/usr
 cmake --build build --config Release -j$(nproc)
 cmake --install build
