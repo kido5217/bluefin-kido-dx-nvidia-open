@@ -26,6 +26,7 @@ set -ouex pipefail
 ## Dev tools
 
 dnf5 --assumeyes install gcc15 gcc15-c++ cmake
+dnf5 --assumeyes install libcublas
 
 ## CUDA
 
