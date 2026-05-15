@@ -30,7 +30,7 @@ dnf5 --assumeyes install libcublas
 
 ## CUDA
 
-dnf5 install --assumeyes cuda-devel cuda-cudart-static
+dnf5 --assumeyes install cuda-devel cuda-cudart-static
 
 ## Build llama.cpp with CUDA support
 
@@ -64,7 +64,7 @@ repo_gpgcheck=1
 EOF
 
 # Workaround for nerbird bug: https://github.com/netbirdio/netbird/issues/5068
-dnf5 download netbird --assumeyes --arch x86_64
+dnf5 --assumeyes download netbird  --arch x86_64
 rpm -i --noscripts netbird_*_linux_amd64.rpm
 rm -f netbird_*_linux_amd64.rpm
 
@@ -89,17 +89,18 @@ systemctl enable netbird
 
 ## misc software
 
-dnf5 install --assumeyes direnv pwgen the_silver_searcher unar waifu2x-converter-cpp xbanish
-dnf5 install --assumeyes yt-dlp yt-dlp+default yt-dlp+secretstorage yt-dlp-fish-completion
-dnf5 install --assumeyes libgda libgda-sqlite
-# dnf5 install --assumeyes blender blender-cuda
-dnf5 install --assumeyes gnome-directory-thumbnailer gnome-kra-ora-thumbnailer
-dnf5 install --assumeyes nebula
+dnf5 --assumeyes install direnv pwgen the_silver_searcher unar waifu2x-converter-cpp xbanish
+dnf5 --assumeyes install yt-dlp yt-dlp+default yt-dlp+secretstorage yt-dlp-fish-completion
+dnf5 --assumeyes install libgda libgda-sqlite
+# dnf5 --assumeyes install blender blender-cuda
+dnf5 --assumeyes install gnome-directory-thumbnailer gnome-kra-ora-thumbnailer
+dnf5 --assumeyes install nebula
+dnf5 --assumeyes install protontricks
 
 ## Remove tailscale
 
 # systemctl disable tailscaled
-# dnf5 remove --assumeyes tailscale
+# dnf5 --assumeyes remove tailscale
 
 ## Add nix packet manager
 
@@ -119,21 +120,21 @@ dnf5 install --assumeyes nebula
 # EOF
 
 # systemctl enable nix.mount
-# dnf5 install --assumeyes nix
+# dnf5 --assumeyes install nix
 # systemctl enable nix-daemon
 
 ## Disable mcelog
 
 systemctl disable mcelog
-dnf5 remove --assumeyes mcelog
+dnf5 --assumeyes remove mcelog
 
 ## Purge docker
 
-dnf5 remove --assumeyes docker-ce docker-ce-cli docker-ce-rootless-extras docker-model-plugin docker-compose-plugin docker-buildx-plugin
+dnf5 --assumeyes remove docker-ce docker-ce-cli docker-ce-rootless-extras docker-model-plugin docker-compose-plugin docker-buildx-plugin
 
 ## Enable docker compatibility for podman
 
-dnf5 install --assumeyes podman-docker podman-compose
+dnf5 --assumeyes install podman-docker podman-compose
 echo 'DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock' >> /etc/environment
 touch /etc/containers/nodocker
 systemctl enable podman.socket
@@ -147,9 +148,9 @@ rm -f yaak-${YAAK_VERSION}-1.x86_64.rpm
 
 ## Install patched jetbrains mono
 
-dnf5 remove --assumeyes jetbrains-mono-fonts-all nerd-fonts
+dnf5 --assumeyes remove jetbrains-mono-fonts-all nerd-fonts
 # dnf5 -y copr enable che/nerd-fonts
-# dnf5 install --assumeyes nerd-fonts
+# dnf5 --assumeyes install nerd-fonts
 # dnf5 -y copr disable che/nerd-fonts
 
 export NJB_VERSION="3.4.0"
@@ -166,7 +167,7 @@ rm -rf JetBrainsMono.zip
 ## Install mise
 
 dnf5 --assumeyes copr enable jdxcode/mise
-dnf5 install --assumeyes mise
+dnf5 --assumeyes install mise
 dnf5 --assumeyes copr disable jdxcode/mise
 
 ## Install pngout
@@ -181,7 +182,7 @@ rm -rf pngout-${PNGOUT_VERSION}-linux
 ## Install quickshell
 
 # dnf5 --assumeyes copr enable errornointernet/quickshell
-# dnf5 install --assumeyes quickshell
+# dnf5 --assumeyes install quickshell
 # dnf5 --assumeyes copr disable errornointernet/quickshell
 
 ## Update all packages
