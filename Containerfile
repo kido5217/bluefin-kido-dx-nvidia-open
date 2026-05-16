@@ -4,7 +4,6 @@ COPY build_files /
 
 # Base Image
 FROM ghcr.io/ublue-os/bluefin-dx-nvidia-open:stable
-#FROM ghcr.io/ublue-os/bazzite:stable
 
 ## Other possible base images include:
 # FROM ghcr.io/ublue-os/bazzite:latest
