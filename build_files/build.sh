@@ -46,6 +46,7 @@ cmake -B build \
       -DCMAKE_INSTALL_PREFIX=/usr
 cmake --build build --config Release -j$(nproc)
 cmake --install build
+cd ..
 
 ## devel cleanup
 
@@ -169,6 +170,11 @@ rm -rf JetBrainsMono.zip
 dnf5 --assumeyes copr enable jdxcode/mise
 dnf5 --assumeyes install mise
 dnf5 --assumeyes copr disable jdxcode/mise
+
+### Dev libs for building
+
+# For ruby
+dnf5 --assumeyes install libffi-devel
 
 ## Install pngout
 
