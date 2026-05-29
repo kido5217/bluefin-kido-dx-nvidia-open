@@ -93,15 +93,11 @@ systemctl enable netbird
 dnf5 --assumeyes install pwgen the_silver_searcher unar waifu2x-converter-cpp xbanish
 dnf5 --assumeyes install yt-dlp yt-dlp+default yt-dlp+secretstorage yt-dlp-fish-completion
 dnf5 --assumeyes install libgda libgda-sqlite
-# dnf5 --assumeyes install blender blender-cuda
+dnf5 --assumeyes install blender
 dnf5 --assumeyes install gnome-directory-thumbnailer gnome-kra-ora-thumbnailer
 dnf5 --assumeyes install nebula
 dnf5 --assumeyes install protontricks
-
-## Remove tailscale
-
-# systemctl disable tailscaled
-# dnf5 --assumeyes remove tailscale
+dnf5 --assumeyes install lldpd
 
 ## Add nix packet manager
 
@@ -131,14 +127,14 @@ dnf5 --assumeyes remove mcelog
 
 ## Purge docker
 
-dnf5 --assumeyes remove docker-ce docker-ce-cli docker-ce-rootless-extras docker-model-plugin docker-compose-plugin docker-buildx-plugin
+# dnf5 --assumeyes remove docker-ce docker-ce-cli docker-ce-rootless-extras docker-model-plugin docker-compose-plugin docker-buildx-plugin
 
 ## Enable docker compatibility for podman
 
-dnf5 --assumeyes install podman-docker podman-compose
-echo 'DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock' >> /etc/environment
-touch /etc/containers/nodocker
-systemctl enable podman.socket
+# dnf5 --assumeyes install podman-docker podman-compose
+# echo 'DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock' >> /etc/environment
+# touch /etc/containers/nodocker
+# systemctl enable podman.socket
 
 ## Install yaak
 
