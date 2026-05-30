@@ -23,14 +23,21 @@ set -ouex pipefail
 
 #systemctl enable podman.socket
 
-## Dev tools
+# dnf5 repolist --all
+# dnf5 config-manager enable fedora-multimedia
+# dnf5 search cuda-nvml-devel
+# dnf5 --assumeyes remove '*nvidia*' '*cuda*'
+# dnf5 --assumeyes remove 'nvidia-*' 'cuda-*' 'libnvidia-*'
+# dnf5 --assumeyes install nvidia-driver nvidia-driver-cuda cuda-devel
+# ## Dev tools
 
-dnf5 --assumeyes install gcc15 gcc15-c++ cmake
-dnf5 --assumeyes install libcublas
+# dnf5 --assumeyes install gcc15 gcc15-c++ cmake
+# dnf5 --assumeyes install libcublas
 
 ## CUDA
 
-# dnf5 --assumeyes install cuda-devel cuda-cudart-static
+# dnf5 --assumeyes install cuda-devel cuda-cudart-static --allow-downgrade --allowerasing
+# dnf5 --assumeyes install cuda-devel --skip-broken
 
 ## Build llama.cpp with CUDA support
 
@@ -54,39 +61,39 @@ dnf5 --assumeyes install libcublas
 
 ## netbird
 
-tee /etc/yum.repos.d/netbird.repo <<EOF
-[netbird]
-name=netbird
-baseurl=https://pkgs.netbird.io/yum/
-enabled=1
-gpgcheck=0
-gpgkey=https://pkgs.netbird.io/yum/repodata/repomd.xml.key
-repo_gpgcheck=1
-EOF
+# tee /etc/yum.repos.d/netbird.repo <<EOF
+# [netbird]
+# name=netbird
+# baseurl=https://pkgs.netbird.io/yum/
+# enabled=1
+# gpgcheck=0
+# gpgkey=https://pkgs.netbird.io/yum/repodata/repomd.xml.key
+# repo_gpgcheck=1
+# EOF
 
 # Workaround for nerbird bug: https://github.com/netbirdio/netbird/issues/5068
-dnf5 --assumeyes download netbird  --arch x86_64
-rpm -i --noscripts netbird_*_linux_amd64.rpm
-rm -f netbird_*_linux_amd64.rpm
+# dnf5 --assumeyes download netbird  --arch x86_64
+# rpm -i --noscripts netbird_*_linux_amd64.rpm
+# rm -f netbird_*_linux_amd64.rpm
 
-tee /etc/systemd/system/netbird.service <<EOF
-[Unit]
-Description=NetBird mesh network client
-ConditionFileIsExecutable=/usr/bin/netbird
-After=network.target syslog.target 
-[Service]
-StartLimitInterval=5
-StartLimitBurst=10
-ExecStart=/usr/bin/netbird "service" "run" "--log-level" "info" "--daemon-addr" "unix:///var/run/netbird.sock" "--log-file" "/var/log/netbird/client.log"
-Restart=always
-RestartSec=120
-EnvironmentFile=-/etc/sysconfig/netbird
-Environment=SYSTEMD_UNIT=netbird
-[Install]
-WantedBy=multi-user.target
-EOF
+# tee /etc/systemd/system/netbird.service <<EOF
+# [Unit]
+# Description=NetBird mesh network client
+# ConditionFileIsExecutable=/usr/bin/netbird
+# After=network.target syslog.target 
+# [Service]
+# StartLimitInterval=5
+# StartLimitBurst=10
+# ExecStart=/usr/bin/netbird "service" "run" "--log-level" "info" "--daemon-addr" "unix:///var/run/netbird.sock" "--log-file" "/var/log/netbird/client.log"
+# Restart=always
+# RestartSec=120
+# EnvironmentFile=-/etc/sysconfig/netbird
+# Environment=SYSTEMD_UNIT=netbird
+# [Install]
+# WantedBy=multi-user.target
+# EOF
 
-systemctl enable netbird
+# systemctl enable netbird
 
 ## misc software
 
