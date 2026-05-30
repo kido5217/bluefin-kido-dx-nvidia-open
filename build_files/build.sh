@@ -100,9 +100,9 @@ set -ouex pipefail
 dnf5 --assumeyes install pwgen the_silver_searcher unar waifu2x-converter-cpp xbanish
 dnf5 --assumeyes install yt-dlp yt-dlp+default yt-dlp+secretstorage yt-dlp-fish-completion
 dnf5 --assumeyes install libgda libgda-sqlite
-dnf5 --assumeyes install blender
+# dnf5 --assumeyes install blender
 dnf5 --assumeyes install gnome-directory-thumbnailer gnome-kra-ora-thumbnailer
-dnf5 --assumeyes install nebula
+# dnf5 --assumeyes install nebula
 dnf5 --assumeyes install protontricks
 dnf5 --assumeyes install lldpd
 
